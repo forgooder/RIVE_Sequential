@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rive-sequential"
+version = "0.1.0"
+description = "Sequential bounded residual evidence correction for knowledge graph scorers"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "forgooder"}]
+dependencies = [
+  "numpy>=1.23",
+  "torch>=2.0",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+

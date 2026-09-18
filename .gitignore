@@ -1,0 +1,22 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+.venv/
+venv/
+.env
+
+# Data and experiment outputs are intentionally excluded from the code release.
+data/
+artifacts/
+results/
+checkpoints/
+outputs/
+*.log
+*.npz
+*.npy
+*.pt
+*.pth
+*.ckpt
+*.parquet
+
