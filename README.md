@@ -8,7 +8,8 @@ two independently bounded evidence stages:
 2. neighbor-resolved one-hop relation-shell evidence (`12R+10` features).
 
 The repository contains the clean PyTorch implementation, the source-only
-adapter trainer, an example configuration, and contract tests. It deliberately
+adapter trainer, an example configuration, candidate-ranking contract tests,
+and a backbone-independent full-candidate validation analyzer. It deliberately
 does not contain datasets, checkpoints, cached scores, third-party model code,
 or locked-test artifacts.
 
@@ -27,6 +28,18 @@ preserves the base ranking exactly. Stage 0 is trained first and then frozen;
 stage 1 is trained afterward. The base backbone remains frozen throughout.
 
 See [docs/METHOD.md](docs/METHOD.md) for tensor shapes and training details.
+
+## Full-candidate validation sanity check
+
+The reusable evaluation module implements entity-ID candidate ordering,
+filtered truths, conservative ties, head/tail fact clustering, and paired
+bootstrap intervals. See
+[docs/FULL_CANDIDATE_EVALUATION.md](docs/FULL_CANDIDATE_EVALUATION.md) for the
+score artifact contract and an executable analysis command.
+
+The small files under `results/www_validation_snapshot/` are an audited,
+validation-only result snapshot. They are not locked-test results and the
+ComplEx row is explicitly a transductive diagnostic.
 
 ## Installation
 
@@ -73,11 +86,13 @@ Included:
 - source-frozen score normalization;
 - two-stage listwise adapter training;
 - paired query-cluster bootstrap;
+- full-target-entity filtered-ranking utilities and a synthetic contract test;
+- aggregate validation summaries and plots with their SHA256 manifest;
 - architecture and cache-contract tests.
 
 Not included:
 
 - third-party GraIL, NBFNet, RED-GNN, AdaProp, ULTRA, or KGE code;
 - datasets, negative samples, feature caches, checkpoints, or predictions;
+- raw full-candidate score matrices;
 - private paths, credentials, identities, or locked-test material.
-

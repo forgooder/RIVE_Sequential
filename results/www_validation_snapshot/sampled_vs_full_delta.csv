@@ -1,0 +1,4 @@
+backbone,track,sampled_1P50N_delta_mrr_mean,sampled_1P50N_delta_mrr_sample_std,full_candidate_delta_mrr_mean,full_candidate_delta_mrr_sample_std,full_over_sampled_delta_ratio,comparison_scope_warning
+GraIL,entity_inductive,0.05316202718927735,0.0006792932825881563,0.025281909517398737,0.0010457966675129643,0.4755633081369409,candidate protocols and fixed query subsets differ; descriptive sanity only
+NBFNet,entity_inductive,0.038798567596221654,0.006350830958518449,0.0520600829184481,0.006321010123978923,1.341804250616662,candidate protocols and fixed query subsets differ; descriptive sanity only
+ComplEx,transductive_diagnostic,0.07172235790603869,0.004726810017630167,0.03665296656002977,0.017538764086846282,0.5110396204213994,candidate protocols and fixed query subsets differ; descriptive sanity only

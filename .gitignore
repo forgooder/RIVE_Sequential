@@ -10,6 +10,10 @@ venv/
 data/
 artifacts/
 results/
+!results/
+results/*
+!results/www_validation_snapshot/
+!results/www_validation_snapshot/**
 checkpoints/
 outputs/
 *.log
@@ -19,4 +23,3 @@ outputs/
 *.pth
 *.ckpt
 *.parquet
-
