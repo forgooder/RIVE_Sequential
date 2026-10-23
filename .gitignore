@@ -5,6 +5,7 @@ __pycache__/
 .venv/
 venv/
 .env
+.DS_Store
 
 # Data and experiment outputs are intentionally excluded from the code release.
 data/
@@ -16,6 +17,9 @@ results/*
 !results/www_validation_snapshot/**
 checkpoints/
 outputs/
+build/
+dist/
+*.egg-info/
 *.log
 *.npz
 *.npy

@@ -9,10 +9,28 @@ description = "Sequential bounded residual evidence correction for knowledge gra
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [{name = "forgooder"}]
+keywords = [
+  "knowledge-graph-completion",
+  "inductive-reasoning",
+  "graph-neural-networks",
+  "pytorch",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
 dependencies = [
   "numpy>=1.23",
   "torch>=2.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/forgooder/RIVE_Sequential"
+Repository = "https://github.com/forgooder/RIVE_Sequential"
+Issues = "https://github.com/forgooder/RIVE_Sequential/issues"
 
 [project.optional-dependencies]
 test = ["pytest>=7"]

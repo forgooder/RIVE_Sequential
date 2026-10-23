@@ -1,0 +1,31 @@
+{
+  "status": "FROZEN_BEFORE_TRAINING",
+  "protocol": "sequential-rive-ladder-synthetic-contract-v1",
+  "dataset": "synthetic_contract_only",
+  "backbone": "synthetic_frozen_scores",
+  "adapter_seed": 43,
+  "candidate_count": 51,
+  "locked_test_access": false,
+  "train_cache": "data/synthetic_smoke/train_scores.npz",
+  "valid_cache": "data/synthetic_smoke/valid_scores.npz",
+  "train_shell": "data/synthetic_smoke/train_shell.npz",
+  "valid_shell": "data/synthetic_smoke/valid_shell.npz",
+  "output": "outputs/synthetic_smoke/seed43",
+  "normalization": {
+    "clip_quantiles": [0.05, 0.95],
+    "epsilon": 1e-08
+  },
+  "training": {
+    "batch_size": 16,
+    "epochs_per_stage": 8,
+    "patience": 4,
+    "learning_rate": 0.005,
+    "weight_decay": 0.0001,
+    "gradient_clip": 5.0,
+    "residual_weight": 0.001
+  },
+  "bootstrap": {
+    "samples": 500,
+    "seed": 20261023
+  }
+}
