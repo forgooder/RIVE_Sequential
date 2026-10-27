@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- published aggregate entity-inductive sampled-test results for 61 executed cells;
+- documented the frozen 1P+50N protocol, statistical evidence, 11 missing cells,
+  and the exploratory WN18RR-v3 overlap boundary;
+- added public artifact hashes while excluding local paths, raw predictions,
+  private datasets, and third-party checkpoints.
+
 ## 0.2.0 - 2026-10-23
 
 - added reusable full-candidate filtered-ranking contracts;

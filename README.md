@@ -3,7 +3,7 @@
 [![CI](https://github.com/forgooder/RIVE_Sequential/actions/workflows/ci.yml/badge.svg)](https://github.com/forgooder/RIVE_Sequential/actions/workflows/ci.yml)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-3776AB)](https://www.python.org/)
 [![PyTorch 2.0+](https://img.shields.io/badge/PyTorch-2.0%2B-EE4C2C)](https://pytorch.org/)
-[![Artifact scope](https://img.shields.io/badge/artifact-validation--only-informational)](#evaluation-boundary)
+[![Artifact scope](https://img.shields.io/badge/artifact-validation%20%2B%20sampled--test-informational)](#evaluation-boundary)
 
 Official implementation and validation artifact for **Sequential RIVE-Ladder**,
 a lightweight score-correction module for knowledge graph ranking. The method
@@ -18,8 +18,9 @@ embedding is introduced by the adapter.
 
 > **Status.** This public release contains the method, source-only trainer,
 > contract tests, full-candidate validation analyzer, synthetic end-to-end
-> smoke data, and aggregate validation summaries. It contains no locked-test
-> artifacts, private datasets, third-party checkpoints, or raw predictions.
+> smoke data, aggregate validation summaries, and an aggregate entity-inductive
+> sampled-test snapshot. It contains no private datasets, third-party
+> checkpoints, raw predictions, or per-candidate test scores.
 
 ## Method
 
@@ -73,6 +74,27 @@ benchmark and not a locked-test result. GraIL and NBFNet are entity-inductive;
 ComplEx is only a transductive interface diagnostic. Detailed per-seed metrics,
 confidence intervals, parameter counts, plots, and hashes are under
 [`results/www_validation_snapshot/`](results/www_validation_snapshot/).
+
+## Entity-inductive test snapshot
+
+The public test snapshot evaluates official target test facts in both prediction
+directions with `1 positive + 50 unique strict-filtered negatives`, conservative
+ties, candidate seed `20261024`, and a source-selected adapter seed of `43`.
+Target test labels are never used for training, tuning, checkpoint selection, or
+early stopping.
+
+Of 72 expected backbone-dataset cells, 61 have executed test artifacts and 11
+remain explicitly missing because the required checkpoint or verifiable pairing
+is unavailable. Among the 57 strictly entity-disjoint completed cells, 44 have a
+positive 95% paired-bootstrap confidence interval and 13 are statistically
+uncertain; none is significantly negative. Four additional WN18RR-v3 cells are
+reported only as exploratory because that local split contains eight
+source-target entity overlaps.
+
+These are sampled filtered test results, not full-candidate results, and are not
+directly comparable to the validation table above. See the frozen protocol,
+complete 72-cell matrix, missing-cell reasons, aggregate metrics, and hashes in
+[`results/entity_inductive_test_snapshot/`](results/entity_inductive_test_snapshot/).
 
 ## Installation
 
@@ -149,6 +171,8 @@ docs/                        method, cache, evaluation, reproducibility
 examples/                    minimal forward pass and synthetic cache generator
 results/www_validation_snapshot/
                              aggregate validation tables, plots, hashes
+results/entity_inductive_test_snapshot/
+                             sampled TEST_IND aggregates, coverage, hashes
 scripts/train_adapter.py     source-only two-stage trainer
 scripts/analyze_fullrank_scores.py
                              append-only full-candidate analyzer
@@ -158,14 +182,14 @@ tests/                       architecture and evaluator contract tests
 
 ## Evaluation boundary
 
-The primary development protocol represented by the trainer is candidate-clean
-ranking with one positive and 50 filtered negatives, conservative ties, both
-prediction directions, and source-only checkpoint selection. Full-candidate
-evaluation is a separate fixed-subset validation track.
+The sampled-test protocol is candidate-clean ranking with one positive and 50
+unique strict-filtered negatives, conservative ties, both prediction directions,
+and source-only checkpoint selection. Full-candidate evaluation is a separate
+fixed-subset validation track. The two tracks are reported separately.
 
 The following are explicitly out of scope for this release:
 
-- locked-test access or model selection using target labels;
+- model selection, tuning, or training using target test labels;
 - claims that the transductive ComplEx diagnostic is unseen-entity inference;
 - comparison of `AUC-PR` values produced under different class balances;
 - redistribution of third-party datasets, checkpoints, or model code;

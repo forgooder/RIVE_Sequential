@@ -9,4 +9,5 @@ cd "${ROOT}"
 "${PYTHON_BIN}" examples/minimal_forward.py
 "${PYTHON_BIN}" -m pytest -q
 sha256sum -c results/www_validation_snapshot/SHA256SUMS.txt
+(cd results/entity_inductive_test_snapshot && sha256sum -c SHA256SUMS.txt)
 echo "release verification: PASS"
